@@ -59,6 +59,7 @@ func (d *Driver) refreshStoragePool() error {
 
 func (d *Driver) createStoragePool() (*libvirt.StoragePool, error) {
 	log.Debug("Creating storage pool")
+	log.Warn("Creating storage pool")
 
 	conn, err := d.getConn()
 	if err != nil {
@@ -96,6 +97,9 @@ func (d *Driver) getPool() (*libvirt.StoragePool, error) {
 	}
 	pool, err := conn.LookupStoragePoolByName(d.getStoragePoolName())
 	if err != nil {
+		log.Infof("Error - LookupStoragePoolByName: %v", err)
+		log.Debugf("Error - LookupStoragePoolByName: %v", err)
+		log.Debugf("driver: %+v", d.Driver)
 		log.Debugf("Could not find storage pool '%s', trying to create it", d.getStoragePoolName())
 		return d.createStoragePool()
 	}
