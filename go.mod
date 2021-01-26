@@ -10,3 +10,5 @@ require (
 )
 
 go 1.12
+
+replace github.com/libvirt/libvirt-go => gitlab.com/teuf/libvirt-go v6.8.1-0.20210126101417-1b0078ed98cb+incompatible
