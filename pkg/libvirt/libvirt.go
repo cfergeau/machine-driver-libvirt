@@ -129,7 +129,7 @@ func (d *Driver) GetURL() (string, error) {
 
 func (d *Driver) getConn() (*libvirt.Connect, error) {
 	if d.conn == nil {
-		conn, err := libvirt.NewConnect(connectionString)
+		conn, err := libvirt.NewConnectWithAuthDefault(connectionString, 0)
 		if err != nil {
 			log.Errorf("Failed to connect to libvirt: %s", err)
 			return &libvirt.Connect{}, errors.New("Unable to connect to kvm driver, did you add yourself to the libvirtd group?")
