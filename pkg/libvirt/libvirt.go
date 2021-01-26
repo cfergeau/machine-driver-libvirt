@@ -528,7 +528,7 @@ func (d *Driver) GetIP() (string, error) {
 	for _, iface := range ifaces {
 		if iface.Hwaddr == macAddress {
 			for _, addr := range iface.Addrs {
-				if addr.Type == int(libvirt.IP_ADDR_TYPE_IPV4) { // ipv4
+				if addr.Type == libvirt.IP_ADDR_TYPE_IPV4 {
 					log.Debugf("IP address: %s", addr.Addr)
 					return addr.Addr, nil
 				}
