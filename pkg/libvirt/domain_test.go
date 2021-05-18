@@ -45,7 +45,11 @@ func TestTemplating(t *testing.T) {
   <cpu mode="host-passthrough">
     <feature policy="disable" name="rdrand"></feature>
   </cpu>
-  <clock offset="utc"></clock>
+  <clock offset="utc">
+    <timer name="rtc" tickpolicy="catchup"></timer>
+    <timer name="pit" tickpolicy="delay"></timer>
+    <timer name="hpet" present="no"></timer>
+  </clock>
   <devices>
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2" cache="default" io="threads"></driver>

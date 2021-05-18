@@ -47,6 +47,20 @@ func domainXML(d *Driver, machineType string) (string, error) {
 		},
 		Clock: &libvirtxml.DomainClock{
 			Offset: "utc",
+			Timer: []libvirtxml.DomainTimer{
+				libvirtxml.DomainTimer{
+					Name:       "rtc",
+					TickPolicy: "catchup",
+				},
+				libvirtxml.DomainTimer{
+					Name:       "pit",
+					TickPolicy: "delay",
+				},
+				libvirtxml.DomainTimer{
+					Name:    "hpet",
+					Present: "no",
+				},
+			},
 		},
 		Devices: &libvirtxml.DomainDeviceList{
 			Disks: []libvirtxml.DomainDisk{
